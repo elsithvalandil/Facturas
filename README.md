@@ -3,6 +3,10 @@
 Minimal API en **.NET 10** que expone consultas sobre facturas usando `Ejemplo.json` como única fuente de datos.
 El total de cada factura (y de cada línea) se calcula en ejecución a partir de `CantidadProducto × Producto.Valor`; los campos `TotalFactura`/`TotalProducto` del JSON se ignoran.
 
+## Especificación
+
+El enunciado, la spec, el plan y las tareas están en [`specs/001-api-consulta-facturas/`](specs/001-api-consulta-facturas/). Los principios del proyecto están en [`.specify/memory/constitution.md`](.specify/memory/constitution.md).
+
 ## Arquitectura (Clean Architecture)
 
 ```
@@ -10,7 +14,7 @@ src/
   Facturas.Domain          Entidades (Factura, DetalleFactura, Producto) y value object Rut (validación módulo 11). Sin dependencias.
   Facturas.Application     Casos de uso (IFacturaService/FacturaService), DTOs y el puerto IFacturaRepository.
   Facturas.Infrastructure  JsonFacturaRepository: lee el JSON una vez, lo mapea al dominio y lo mantiene en memoria.
-  Facturas.Api             Minimal API: endpoints, ApiKey, JWT, ProblemDetails, OpenAPI + Swagger UI.
+  Facturas.Api             Minimal API: endpoints, ApiKey, ProblemDetails, OpenAPI + Swagger UI.
 tests/
   Facturas.Tests           Pruebas de dominio, de aplicación (sobre el JSON real) e integración HTTP.
 ```
@@ -19,20 +23,16 @@ Las dependencias apuntan hacia adentro: `Api → Application/Infrastructure → 
 
 ## Seguridad
 
-Doble control en todos los endpoints de `/api/v1`:
+Todos los endpoints de `/api/v1` exigen una **ApiKey** en el header `X-Api-Key`. Se valida con un endpoint filter aplicado al grupo raíz, tal como pide el enunciado.
 
-1. **ApiKey** en el header `X-Api-Key` (endpoint filter aplicado al grupo raíz, incluido el endpoint de token).
-2. **JWT Bearer** (HS256) con el claim `scope=facturas:read` para los endpoints de negocio.
+> Una versión anterior además exigía JWT, por indicación del ADR. Se removió para ajustarse al enunciado: ver la decisión [D-07](specs/001-api-consulta-facturas/plan.md#d-07--remoción-de-jwt).
 
-Flujo: `POST /api/v1/auth/token` con ApiKey + `clientId`/`clientSecret` → se obtiene el JWT → se llama a los endpoints con ApiKey + `Authorization: Bearer <jwt>`.
-
-Los valores de desarrollo están en `appsettings.Development.json`. En otros entornos deben definirse por variables de entorno o un gestor de secretos (`ApiKey__Key`, `Jwt__SigningKey`, `ApiClients__Clients__0__ClientId`, ...); la aplicación no arranca si faltan.
+El valor de desarrollo está en `appsettings.Development.json`. En otros entornos debe definirse por variable de entorno o gestor de secretos (`ApiKey__Key`); la aplicación no arranca si falta.
 
 ## Endpoints
 
 | Método | Ruta | Descripción |
 |---|---|---|
-| POST | `/api/v1/auth/token` | Emite un JWT (solo ApiKey) |
 | GET | `/api/v1/facturas` | Todas las facturas con total calculado |
 | GET | `/api/v1/compradores/{rut}/facturas` | Facturas de un comprador (`21595854-k`, `21.595.854-K` o `21595854`) |
 | GET | `/api/v1/compradores/mayor-compra` | Comprador con mayor monto acumulado |
@@ -45,9 +45,8 @@ Los valores de desarrollo están en `appsettings.Development.json`. En otros ent
 | Código | Cuándo |
 |---|---|
 | 200 | Consulta exitosa |
-| 400 | RUT con formato/DV inválido, comuna ≤ 0, credenciales faltantes en `/auth/token` |
-| 401 | ApiKey ausente o inválida, JWT ausente/inválido/expirado, credenciales de cliente inválidas |
-| 403 | JWT válido sin el scope `facturas:read` |
+| 400 | RUT con formato/DV inválido, comuna ≤ 0 |
+| 401 | ApiKey ausente o inválida |
 | 404 | Comprador o comuna sin facturas |
 | 500 | Error no controlado (respuesta `ProblemDetails`) |
 
@@ -63,7 +62,7 @@ dotnet run --project src/Facturas.Api --launch-profile http
 - OpenAPI: http://localhost:5116/openapi/v1.json
 - Peticiones de ejemplo: `src/Facturas.Api/Facturas.Api.http`
 
-Credenciales de desarrollo: ApiKey `dev-api-key-7f3c2a9e4b1d`, cliente `facturas-client` / `dev-client-secret`.
+ApiKey de desarrollo: `dev-api-key-7f3c2a9e4b1d`.
 
 ## Pruebas
 

@@ -15,26 +15,23 @@ public sealed class JsonFacturaRepository : IFacturaRepository
 {
     private static readonly JsonSerializerOptions SerializerOptions = new() { PropertyNameCaseInsensitive = true };
 
-    private readonly string _filePath;
-    private readonly Lazy<Task<IReadOnlyList<Factura>>> _facturas;
+    private readonly IReadOnlyList<Factura> _facturas;
 
     public JsonFacturaRepository(IOptions<FacturaDataOptions> options)
     {
         var path = options.Value.FilePath;
-        _filePath = Path.IsPathRooted(path) ? path : Path.Combine(AppContext.BaseDirectory, path);
-        _facturas = new Lazy<Task<IReadOnlyList<Factura>>>(LoadAsync);
+        var filePath = Path.IsPathRooted(path) ? path : Path.Combine(AppContext.BaseDirectory, path);
+        _facturas = Load(filePath);
     }
 
+    // La interfaz es asíncrona porque representa una base de datos; aquí los datos ya están en memoria.
     public Task<IReadOnlyList<Factura>> GetAllAsync(CancellationToken cancellationToken = default) =>
-        _facturas.Value.WaitAsync(cancellationToken);
+        Task.FromResult(_facturas);
 
-    private async Task<IReadOnlyList<Factura>> LoadAsync()
+    private static IReadOnlyList<Factura> Load(string filePath)
     {
-        if (!File.Exists(_filePath))
-            throw new FileNotFoundException("No se encontró el archivo de datos de facturas.", _filePath);
-
-        await using var stream = File.OpenRead(_filePath);
-        var records = await JsonSerializer.DeserializeAsync<List<FacturaRecord>>(stream, SerializerOptions)
+        using var stream = File.OpenRead(filePath);
+        var records = JsonSerializer.Deserialize<List<FacturaRecord>>(stream, SerializerOptions)
                       ?? throw new InvalidDataException("El archivo de facturas está vacío o no es válido.");
 
         return records.Select(ToDomain).ToList().AsReadOnly();

@@ -26,16 +26,13 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseAuthentication();
-app.UseAuthorization();
 
-// Todos los endpoints bajo /api/v1 exigen ApiKey; los de negocio además exigen JWT con scope facturas:read.
+// Todos los endpoints bajo /api/v1 exigen ApiKey.
 var api = app.MapGroup("/api/v1")
     .AddEndpointFilter<ApiKeyEndpointFilter>()
     .ProducesProblem(StatusCodes.Status401Unauthorized)
     .ProducesProblem(StatusCodes.Status500InternalServerError);
 
-api.MapAuthEndpoints();
 api.MapFacturaEndpoints();
 api.MapCompradorEndpoints();
 

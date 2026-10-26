@@ -1,6 +1,5 @@
 using Facturas.Application.Abstractions;
 using Facturas.Application.Dtos;
-using Facturas.Domain.Entities;
 using Facturas.Domain.ValueObjects;
 
 namespace Facturas.Application.Services;
@@ -32,8 +31,12 @@ public sealed class FacturaService(IFacturaRepository repository) : IFacturaServ
     {
         var facturas = await repository.GetAllAsync(cancellationToken);
         return facturas
-            .GroupBy(f => f.Comprador.Numero)
-            .Select(g => ToCompradorTotal(g.First().Comprador, g))
+            .GroupBy(f => f.Comprador)
+            .Select(g => new CompradorTotalDto(
+                g.Key.Numero,
+                g.Key.Dv.ToString(),
+                g.Count(),
+                g.Sum(f => f.Total)))
             .OrderByDescending(c => c.MontoTotalCompras)
             .ThenBy(c => c.RUTComprador)
             .ToList();
@@ -60,16 +63,5 @@ public sealed class FacturaService(IFacturaRepository repository) : IFacturaServ
             .Where(f => f.ComunaComprador == comuna)
             .Select(f => f.ToDto())
             .ToList();
-    }
-
-    private static CompradorTotalDto ToCompradorTotal(Rut comprador, IEnumerable<Factura> facturas)
-    {
-        var lista = facturas.ToList();
-        return new CompradorTotalDto(
-            comprador.Numero,
-            comprador.Dv.ToString(),
-            comprador.ToString(),
-            lista.Count,
-            lista.Sum(f => f.Total));
     }
 }

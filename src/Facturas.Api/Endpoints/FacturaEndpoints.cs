@@ -1,4 +1,3 @@
-using Facturas.Api.Security;
 using Facturas.Application.Abstractions;
 using Facturas.Application.Dtos;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -10,8 +9,7 @@ public static class FacturaEndpoints
     public static IEndpointRouteBuilder MapFacturaEndpoints(this IEndpointRouteBuilder routes)
     {
         var group = routes.MapGroup("/facturas")
-            .WithTags("Facturas")
-            .RequireAuthorization(Policies.FacturasRead);
+            .WithTags("Facturas");
 
         group.MapGet("/", async (IFacturaService service, CancellationToken ct) =>
                 TypedResults.Ok(await service.GetFacturasAsync(ct)))

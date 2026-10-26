@@ -1,4 +1,3 @@
-using Facturas.Api.Security;
 using Facturas.Application.Abstractions;
 using Facturas.Application.Dtos;
 using Facturas.Domain.ValueObjects;
@@ -11,8 +10,7 @@ public static class CompradorEndpoints
     public static IEndpointRouteBuilder MapCompradorEndpoints(this IEndpointRouteBuilder routes)
     {
         var group = routes.MapGroup("/compradores")
-            .WithTags("Compradores")
-            .RequireAuthorization(Policies.FacturasRead);
+            .WithTags("Compradores");
 
         group.MapGet("/", async (IFacturaService service, CancellationToken ct) =>
                 TypedResults.Ok(await service.GetCompradoresConTotalAsync(ct)))

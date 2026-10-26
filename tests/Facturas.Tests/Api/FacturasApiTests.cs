@@ -1,7 +1,5 @@
 using System.Net;
-using System.Net.Http.Headers;
 using System.Net.Http.Json;
-using Facturas.Api.Security;
 using Facturas.Application.Dtos;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -17,16 +15,15 @@ public class FacturasApiTests(FacturasApiFactory factory) : IClassFixture<Factur
     {
         var client = factory.CreateClient();
 
-        var response = await client.PostAsJsonAsync("/api/v1/auth/token", new TokenRequest("facturas-client", "dev-client-secret"));
+        var response = await client.GetAsync("/api/v1/facturas");
 
         Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
     }
 
     [Fact]
-    public async Task ApiKey_invalida_responde_401_aun_con_jwt_valido()
+    public async Task ApiKey_invalida_responde_401()
     {
-        var client = await CreateAuthorizedClientAsync();
-        client.DefaultRequestHeaders.Remove("X-Api-Key");
+        var client = factory.CreateClient();
         client.DefaultRequestHeaders.Add("X-Api-Key", "otra-key");
 
         var response = await client.GetAsync("/api/v1/facturas");
@@ -35,41 +32,9 @@ public class FacturasApiTests(FacturasApiFactory factory) : IClassFixture<Factur
     }
 
     [Fact]
-    public async Task Sin_jwt_responde_401()
-    {
-        var client = CreateClientWithApiKey();
-
-        var response = await client.GetAsync("/api/v1/facturas");
-
-        Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
-    }
-
-    [Fact]
-    public async Task Credenciales_invalidas_responde_401_y_faltantes_400()
-    {
-        var client = CreateClientWithApiKey();
-
-        var invalidas = await client.PostAsJsonAsync("/api/v1/auth/token", new TokenRequest("facturas-client", "incorrecta"));
-        var faltantes = await client.PostAsJsonAsync("/api/v1/auth/token", new TokenRequest("", ""));
-
-        Assert.Equal(HttpStatusCode.Unauthorized, invalidas.StatusCode);
-        Assert.Equal(HttpStatusCode.BadRequest, faltantes.StatusCode);
-    }
-
-    [Fact]
-    public async Task Jwt_sin_scope_responde_403()
-    {
-        var client = await CreateAuthorizedClientAsync("sin-scope-client", "sin-scope-secret");
-
-        var response = await client.GetAsync("/api/v1/facturas");
-
-        Assert.Equal(HttpStatusCode.Forbidden, response.StatusCode);
-    }
-
-    [Fact]
     public async Task GetFacturas_responde_200_con_totales_calculados()
     {
-        var client = await CreateAuthorizedClientAsync();
+        var client = CreateClientWithApiKey();
 
         var facturas = await client.GetFromJsonAsync<List<FacturaDto>>("/api/v1/facturas");
 
@@ -91,7 +56,7 @@ public class FacturasApiTests(FacturasApiFactory factory) : IClassFixture<Factur
     [InlineData("/api/v1/facturas/comunas/999", HttpStatusCode.NotFound)]
     public async Task Endpoints_responden_codigo_http_esperado(string url, HttpStatusCode esperado)
     {
-        var client = await CreateAuthorizedClientAsync();
+        var client = CreateClientWithApiKey();
 
         var response = await client.GetAsync(url);
 
@@ -104,17 +69,6 @@ public class FacturasApiTests(FacturasApiFactory factory) : IClassFixture<Factur
         client.DefaultRequestHeaders.Add("X-Api-Key", ApiKey);
         return client;
     }
-
-    private async Task<HttpClient> CreateAuthorizedClientAsync(string clientId = "facturas-client", string secret = "dev-client-secret")
-    {
-        var client = CreateClientWithApiKey();
-        var response = await client.PostAsJsonAsync("/api/v1/auth/token", new TokenRequest(clientId, secret));
-        response.EnsureSuccessStatusCode();
-
-        var token = await response.Content.ReadFromJsonAsync<TokenResponse>();
-        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token!.AccessToken);
-        return client;
-    }
 }
 
 public sealed class FacturasApiFactory : WebApplicationFactory<Program>
@@ -122,8 +76,5 @@ public sealed class FacturasApiFactory : WebApplicationFactory<Program>
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
         builder.UseEnvironment("Development");
-        // Cliente adicional sin el scope facturas:read para probar el 403.
-        builder.UseSetting("ApiClients:Clients:1:ClientId", "sin-scope-client");
-        builder.UseSetting("ApiClients:Clients:1:ClientSecret", "sin-scope-secret");
     }
 }

@@ -1,46 +1,26 @@
 @baseUrl = http://localhost:5116
 @apiKey = dev-api-key-7f3c2a9e4b1d
 
-### 1. Obtener JWT (requiere ApiKey)
-# @name token
-POST {{baseUrl}}/api/v1/auth/token
-X-Api-Key: {{apiKey}}
-Content-Type: application/json
-
-{
-  "clientId": "facturas-client",
-  "clientSecret": "dev-client-secret"
-}
-
-###
-@jwt = {{token.response.body.$.accessToken}}
-
 ### Lista completa de facturas (total calculado)
 GET {{baseUrl}}/api/v1/facturas
 X-Api-Key: {{apiKey}}
-Authorization: Bearer {{jwt}}
 
 ### Facturas de un comprador por RUT (acepta 21595854-k, 21.595.854-K o 21595854)
 GET {{baseUrl}}/api/v1/compradores/21595854-k/facturas
 X-Api-Key: {{apiKey}}
-Authorization: Bearer {{jwt}}
 
 ### Comprador con mayor monto acumulado
 GET {{baseUrl}}/api/v1/compradores/mayor-compra
 X-Api-Key: {{apiKey}}
-Authorization: Bearer {{jwt}}
 
 ### Compradores con monto total de compras
 GET {{baseUrl}}/api/v1/compradores
 X-Api-Key: {{apiKey}}
-Authorization: Bearer {{jwt}}
 
 ### Facturas agrupadas por comuna
 GET {{baseUrl}}/api/v1/facturas/comunas
 X-Api-Key: {{apiKey}}
-Authorization: Bearer {{jwt}}
 
 ### Facturas de una comuna específica
 GET {{baseUrl}}/api/v1/facturas/comunas/45
 X-Api-Key: {{apiKey}}
-Authorization: Bearer {{jwt}}
