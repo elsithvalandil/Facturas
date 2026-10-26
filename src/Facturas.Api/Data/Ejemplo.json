@@ -1,0 +1,969 @@
+[
+  {
+    "NumeroDocumento": 1569.0,
+    "RUTVendedor": 21979000.0,
+    "DvVendedor": "7",
+    "RUTComprador": 11488103.0,
+    "DvComprador": "1",
+    "DireccionComprador": "Direccion 1",
+    "ComunaComprador": 65.0,
+    "RegionComprador": 13.0,
+    "TotalFactura": 0.0,
+    "DetalleFactura": [
+      {
+        "CantidadProducto": 9.0,
+        "Producto": {
+          "Descripcion": "Producto 3",
+          "Valor": 3000.0
+        },
+        "TotalProducto": 27000.0
+      },
+      {
+        "CantidadProducto": 9.0,
+        "Producto": {
+          "Descripcion": "Producto 1",
+          "Valor": 1000.0
+        },
+        "TotalProducto": 9000.0
+      },
+      {
+        "CantidadProducto": 44.0,
+        "Producto": {
+          "Descripcion": "Producto 2",
+          "Valor": 2000.0
+        },
+        "TotalProducto": 88000.0
+      },
+      {
+        "CantidadProducto": 9.0,
+        "Producto": {
+          "Descripcion": "Producto 5",
+          "Valor": 4200.0
+        },
+        "TotalProducto": 37800.0
+      },
+      {
+        "CantidadProducto": 7.0,
+        "Producto": {
+          "Descripcion": "Producto 6",
+          "Valor": 5000.0
+        },
+        "TotalProducto": 35000.0
+      }
+    ]
+  },
+  {
+    "NumeroDocumento": 1570.0,
+    "RUTVendedor": 8796626.0,
+    "DvVendedor": "7",
+    "RUTComprador": 21595854.0,
+    "DvComprador": "k",
+    "DireccionComprador": "Direccion 2",
+    "ComunaComprador": 65.0,
+    "RegionComprador": 13.0,
+    "TotalFactura": 0.0,
+    "DetalleFactura": [
+      {
+        "CantidadProducto": 7.0,
+        "Producto": {
+          "Descripcion": "Producto 10",
+          "Valor": 1050.0
+        },
+        "TotalProducto": 7350.0
+      },
+      {
+        "CantidadProducto": 45.0,
+        "Producto": {
+          "Descripcion": "Producto 6",
+          "Valor": 5000.0
+        },
+        "TotalProducto": 225000.0
+      },
+      {
+        "CantidadProducto": 6.0,
+        "Producto": {
+          "Descripcion": "Producto 2",
+          "Valor": 2000.0
+        },
+        "TotalProducto": 12000.0
+      },
+      {
+        "CantidadProducto": 9.0,
+        "Producto": {
+          "Descripcion": "Producto 7",
+          "Valor": 1400.0
+        },
+        "TotalProducto": 12600.0
+      },
+      {
+        "CantidadProducto": 8.0,
+        "Producto": {
+          "Descripcion": "Producto 3",
+          "Valor": 3000.0
+        },
+        "TotalProducto": 24000.0
+      }
+    ]
+  },
+  {
+    "NumeroDocumento": 1571.0,
+    "RUTVendedor": 21979000.0,
+    "DvVendedor": "7",
+    "RUTComprador": 6584588.0,
+    "DvComprador": "1",
+    "DireccionComprador": "Direccion 3",
+    "ComunaComprador": 78.0,
+    "RegionComprador": 13.0,
+    "TotalFactura": 0.0,
+    "DetalleFactura": [
+      {
+        "CantidadProducto": 7.0,
+        "Producto": {
+          "Descripcion": "Producto 1",
+          "Valor": 1000.0
+        },
+        "TotalProducto": 7000.0
+      },
+      {
+        "CantidadProducto": 45.0,
+        "Producto": {
+          "Descripcion": "Producto 4",
+          "Valor": 4000.0
+        },
+        "TotalProducto": 180000.0
+      },
+      {
+        "CantidadProducto": 10.0,
+        "Producto": {
+          "Descripcion": "Producto 10",
+          "Valor": 1050.0
+        },
+        "TotalProducto": 10500.0
+      },
+      {
+        "CantidadProducto": 7.0,
+        "Producto": {
+          "Descripcion": "Producto 3",
+          "Valor": 3000.0
+        },
+        "TotalProducto": 21000.0
+      },
+      {
+        "CantidadProducto": 7.0,
+        "Producto": {
+          "Descripcion": "Producto 5",
+          "Valor": 4200.0
+        },
+        "TotalProducto": 29400.0
+      },
+      {
+        "CantidadProducto": 8.0,
+        "Producto": {
+          "Descripcion": "Producto 8",
+          "Valor": 1060.0
+        },
+        "TotalProducto": 8480.0
+      },
+      {
+        "CantidadProducto": 6.0,
+        "Producto": {
+          "Descripcion": "Producto 9",
+          "Valor": 1400.0
+        },
+        "TotalProducto": 8400.0
+      },
+      {
+        "CantidadProducto": 6.0,
+        "Producto": {
+          "Descripcion": "Producto 7",
+          "Valor": 1400.0
+        },
+        "TotalProducto": 8400.0
+      }
+    ]
+  },
+  {
+    "NumeroDocumento": 1572.0,
+    "RUTVendedor": 21979000.0,
+    "DvVendedor": "7",
+    "RUTComprador": 21595854.0,
+    "DvComprador": "k",
+    "DireccionComprador": "Direccion 4",
+    "ComunaComprador": 89.0,
+    "RegionComprador": 13.0,
+    "TotalFactura": 0.0,
+    "DetalleFactura": [
+      {
+        "CantidadProducto": 7.0,
+        "Producto": {
+          "Descripcion": "Producto 10",
+          "Valor": 1050.0
+        },
+        "TotalProducto": 7350.0
+      },
+      {
+        "CantidadProducto": 10.0,
+        "Producto": {
+          "Descripcion": "Producto 6",
+          "Valor": 5000.0
+        },
+        "TotalProducto": 50000.0
+      },
+      {
+        "CantidadProducto": 8.0,
+        "Producto": {
+          "Descripcion": "Producto 2",
+          "Valor": 2000.0
+        },
+        "TotalProducto": 16000.0
+      },
+      {
+        "CantidadProducto": 44.0,
+        "Producto": {
+          "Descripcion": "Producto 7",
+          "Valor": 1400.0
+        },
+        "TotalProducto": 61600.0
+      },
+      {
+        "CantidadProducto": 45.0,
+        "Producto": {
+          "Descripcion": "Producto 5",
+          "Valor": 4200.0
+        },
+        "TotalProducto": 189000.0
+      },
+      {
+        "CantidadProducto": 41.0,
+        "Producto": {
+          "Descripcion": "Producto 4",
+          "Valor": 4000.0
+        },
+        "TotalProducto": 164000.0
+      }
+    ]
+  },
+  {
+    "NumeroDocumento": 1573.0,
+    "RUTVendedor": 18338335.0,
+    "DvVendedor": "3",
+    "RUTComprador": 21595854.0,
+    "DvComprador": "k",
+    "DireccionComprador": "Direccion 5",
+    "ComunaComprador": 45.0,
+    "RegionComprador": 13.0,
+    "TotalFactura": 0.0,
+    "DetalleFactura": [
+      {
+        "CantidadProducto": 45.0,
+        "Producto": {
+          "Descripcion": "Producto 3",
+          "Valor": 3000.0
+        },
+        "TotalProducto": 135000.0
+      },
+      {
+        "CantidadProducto": 8.0,
+        "Producto": {
+          "Descripcion": "Producto 4",
+          "Valor": 4000.0
+        },
+        "TotalProducto": 32000.0
+      },
+      {
+        "CantidadProducto": 6.0,
+        "Producto": {
+          "Descripcion": "Producto 2",
+          "Valor": 2000.0
+        },
+        "TotalProducto": 12000.0
+      },
+      {
+        "CantidadProducto": 7.0,
+        "Producto": {
+          "Descripcion": "Producto 5",
+          "Valor": 4200.0
+        },
+        "TotalProducto": 29400.0
+      },
+      {
+        "CantidadProducto": 44.0,
+        "Producto": {
+          "Descripcion": "Producto 6",
+          "Valor": 5000.0
+        },
+        "TotalProducto": 220000.0
+      }
+    ]
+  },
+  {
+    "NumeroDocumento": 1574.0,
+    "RUTVendedor": 23059984.0,
+    "DvVendedor": "k",
+    "RUTComprador": 24929317.0,
+    "DvComprador": "2",
+    "DireccionComprador": "Direccion 6",
+    "ComunaComprador": 45.0,
+    "RegionComprador": 13.0,
+    "TotalFactura": 0.0,
+    "DetalleFactura": [
+      {
+        "CantidadProducto": 7.0,
+        "Producto": {
+          "Descripcion": "Producto 7",
+          "Valor": 1400.0
+        },
+        "TotalProducto": 9800.0
+      },
+      {
+        "CantidadProducto": 6.0,
+        "Producto": {
+          "Descripcion": "Producto 2",
+          "Valor": 2000.0
+        },
+        "TotalProducto": 12000.0
+      }
+    ]
+  },
+  {
+    "NumeroDocumento": 1575.0,
+    "RUTVendedor": 14559290.0,
+    "DvVendedor": "9",
+    "RUTComprador": 10782109.0,
+    "DvComprador": "0",
+    "DireccionComprador": "Direccion 7",
+    "ComunaComprador": 45.0,
+    "RegionComprador": 13.0,
+    "TotalFactura": 0.0,
+    "DetalleFactura": [
+      {
+        "CantidadProducto": 44.0,
+        "Producto": {
+          "Descripcion": "Producto 3",
+          "Valor": 3000.0
+        },
+        "TotalProducto": 132000.0
+      }
+    ]
+  },
+  {
+    "NumeroDocumento": 1576.0,
+    "RUTVendedor": 5659441.0,
+    "DvVendedor": "8",
+    "RUTComprador": 6584588.0,
+    "DvComprador": "1",
+    "DireccionComprador": "Direccion 8",
+    "ComunaComprador": 78.0,
+    "RegionComprador": 13.0,
+    "TotalFactura": 0.0,
+    "DetalleFactura": [
+      {
+        "CantidadProducto": 41.0,
+        "Producto": {
+          "Descripcion": "Producto 6",
+          "Valor": 5000.0
+        },
+        "TotalProducto": 205000.0
+      },
+      {
+        "CantidadProducto": 41.0,
+        "Producto": {
+          "Descripcion": "Producto 8",
+          "Valor": 1060.0
+        },
+        "TotalProducto": 43460.0
+      },
+      {
+        "CantidadProducto": 7.0,
+        "Producto": {
+          "Descripcion": "Producto 9",
+          "Valor": 1400.0
+        },
+        "TotalProducto": 9800.0
+      },
+      {
+        "CantidadProducto": 8.0,
+        "Producto": {
+          "Descripcion": "Producto 4",
+          "Valor": 4000.0
+        },
+        "TotalProducto": 32000.0
+      },
+      {
+        "CantidadProducto": 8.0,
+        "Producto": {
+          "Descripcion": "Producto 7",
+          "Valor": 1400.0
+        },
+        "TotalProducto": 11200.0
+      },
+      {
+        "CantidadProducto": 41.0,
+        "Producto": {
+          "Descripcion": "Producto 3",
+          "Valor": 3000.0
+        },
+        "TotalProducto": 123000.0
+      }
+    ]
+  },
+  {
+    "NumeroDocumento": 1577.0,
+    "RUTVendedor": 14565345.0,
+    "DvVendedor": "2",
+    "RUTComprador": 21595854.0,
+    "DvComprador": "k",
+    "DireccionComprador": "Direccion 9",
+    "ComunaComprador": 12.0,
+    "RegionComprador": 13.0,
+    "TotalFactura": 0.0,
+    "DetalleFactura": [
+      {
+        "CantidadProducto": 10.0,
+        "Producto": {
+          "Descripcion": "Producto 2",
+          "Valor": 2000.0
+        },
+        "TotalProducto": 20000.0
+      }
+    ]
+  },
+  {
+    "NumeroDocumento": 1578.0,
+    "RUTVendedor": 14565345.0,
+    "DvVendedor": "2",
+    "RUTComprador": 7268641.0,
+    "DvComprador": "1",
+    "DireccionComprador": "Direccion 10",
+    "ComunaComprador": 78.0,
+    "RegionComprador": 13.0,
+    "TotalFactura": 0.0,
+    "DetalleFactura": [
+      {
+        "CantidadProducto": 6.0,
+        "Producto": {
+          "Descripcion": "Producto 4",
+          "Valor": 4000.0
+        },
+        "TotalProducto": 24000.0
+      },
+      {
+        "CantidadProducto": 41.0,
+        "Producto": {
+          "Descripcion": "Producto 7",
+          "Valor": 1400.0
+        },
+        "TotalProducto": 57400.0
+      },
+      {
+        "CantidadProducto": 45.0,
+        "Producto": {
+          "Descripcion": "Producto 2",
+          "Valor": 2000.0
+        },
+        "TotalProducto": 90000.0
+      },
+      {
+        "CantidadProducto": 10.0,
+        "Producto": {
+          "Descripcion": "Producto 5",
+          "Valor": 4200.0
+        },
+        "TotalProducto": 42000.0
+      },
+      {
+        "CantidadProducto": 7.0,
+        "Producto": {
+          "Descripcion": "Producto 3",
+          "Valor": 3000.0
+        },
+        "TotalProducto": 21000.0
+      },
+      {
+        "CantidadProducto": 6.0,
+        "Producto": {
+          "Descripcion": "Producto 1",
+          "Valor": 1000.0
+        },
+        "TotalProducto": 6000.0
+      },
+      {
+        "CantidadProducto": 6.0,
+        "Producto": {
+          "Descripcion": "Producto 9",
+          "Valor": 1400.0
+        },
+        "TotalProducto": 8400.0
+      }
+    ]
+  },
+  {
+    "NumeroDocumento": 1579.0,
+    "RUTVendedor": 8796626.0,
+    "DvVendedor": "7",
+    "RUTComprador": 10782109.0,
+    "DvComprador": "0",
+    "DireccionComprador": "Direccion 11",
+    "ComunaComprador": 78.0,
+    "RegionComprador": 13.0,
+    "TotalFactura": 0.0,
+    "DetalleFactura": [
+      {
+        "CantidadProducto": 10.0,
+        "Producto": {
+          "Descripcion": "Producto 4",
+          "Valor": 4000.0
+        },
+        "TotalProducto": 40000.0
+      },
+      {
+        "CantidadProducto": 10.0,
+        "Producto": {
+          "Descripcion": "Producto 9",
+          "Valor": 1400.0
+        },
+        "TotalProducto": 14000.0
+      },
+      {
+        "CantidadProducto": 41.0,
+        "Producto": {
+          "Descripcion": "Producto 5",
+          "Valor": 4200.0
+        },
+        "TotalProducto": 172200.0
+      },
+      {
+        "CantidadProducto": 8.0,
+        "Producto": {
+          "Descripcion": "Producto 6",
+          "Valor": 5000.0
+        },
+        "TotalProducto": 40000.0
+      },
+      {
+        "CantidadProducto": 45.0,
+        "Producto": {
+          "Descripcion": "Producto 10",
+          "Valor": 1050.0
+        },
+        "TotalProducto": 47250.0
+      }
+    ]
+  },
+  {
+    "NumeroDocumento": 1580.0,
+    "RUTVendedor": 21979000.0,
+    "DvVendedor": "7",
+    "RUTComprador": 8622246.0,
+    "DvComprador": "9",
+    "DireccionComprador": "Direccion 12",
+    "ComunaComprador": 45.0,
+    "RegionComprador": 13.0,
+    "TotalFactura": 0.0,
+    "DetalleFactura": [
+      {
+        "CantidadProducto": 10.0,
+        "Producto": {
+          "Descripcion": "Producto 1",
+          "Valor": 1000.0
+        },
+        "TotalProducto": 10000.0
+      },
+      {
+        "CantidadProducto": 6.0,
+        "Producto": {
+          "Descripcion": "Producto 2",
+          "Valor": 2000.0
+        },
+        "TotalProducto": 12000.0
+      },
+      {
+        "CantidadProducto": 9.0,
+        "Producto": {
+          "Descripcion": "Producto 8",
+          "Valor": 1060.0
+        },
+        "TotalProducto": 9540.0
+      },
+      {
+        "CantidadProducto": 7.0,
+        "Producto": {
+          "Descripcion": "Producto 10",
+          "Valor": 1050.0
+        },
+        "TotalProducto": 7350.0
+      },
+      {
+        "CantidadProducto": 10.0,
+        "Producto": {
+          "Descripcion": "Producto 3",
+          "Valor": 3000.0
+        },
+        "TotalProducto": 30000.0
+      },
+      {
+        "CantidadProducto": 41.0,
+        "Producto": {
+          "Descripcion": "Producto 7",
+          "Valor": 1400.0
+        },
+        "TotalProducto": 57400.0
+      },
+      {
+        "CantidadProducto": 7.0,
+        "Producto": {
+          "Descripcion": "Producto 9",
+          "Valor": 1400.0
+        },
+        "TotalProducto": 9800.0
+      },
+      {
+        "CantidadProducto": 41.0,
+        "Producto": {
+          "Descripcion": "Producto 4",
+          "Valor": 4000.0
+        },
+        "TotalProducto": 164000.0
+      }
+    ]
+  },
+  {
+    "NumeroDocumento": 1581.0,
+    "RUTVendedor": 14559290.0,
+    "DvVendedor": "9",
+    "RUTComprador": 6584588.0,
+    "DvComprador": "1",
+    "DireccionComprador": "Direccion 13",
+    "ComunaComprador": 45.0,
+    "RegionComprador": 13.0,
+    "TotalFactura": 0.0,
+    "DetalleFactura": [
+      {
+        "CantidadProducto": 44.0,
+        "Producto": {
+          "Descripcion": "Producto 6",
+          "Valor": 5000.0
+        },
+        "TotalProducto": 220000.0
+      },
+      {
+        "CantidadProducto": 10.0,
+        "Producto": {
+          "Descripcion": "Producto 4",
+          "Valor": 4000.0
+        },
+        "TotalProducto": 40000.0
+      },
+      {
+        "CantidadProducto": 45.0,
+        "Producto": {
+          "Descripcion": "Producto 10",
+          "Valor": 1050.0
+        },
+        "TotalProducto": 47250.0
+      },
+      {
+        "CantidadProducto": 8.0,
+        "Producto": {
+          "Descripcion": "Producto 2",
+          "Valor": 2000.0
+        },
+        "TotalProducto": 16000.0
+      }
+    ]
+  },
+  {
+    "NumeroDocumento": 1582.0,
+    "RUTVendedor": 13581256.0,
+    "DvVendedor": "0",
+    "RUTComprador": 9611219.0,
+    "DvComprador": "k",
+    "DireccionComprador": "Direccion 14",
+    "ComunaComprador": 45.0,
+    "RegionComprador": 13.0,
+    "TotalFactura": 0.0,
+    "DetalleFactura": [
+      {
+        "CantidadProducto": 45.0,
+        "Producto": {
+          "Descripcion": "Producto 5",
+          "Valor": 4200.0
+        },
+        "TotalProducto": 189000.0
+      },
+      {
+        "CantidadProducto": 9.0,
+        "Producto": {
+          "Descripcion": "Producto 8",
+          "Valor": 1060.0
+        },
+        "TotalProducto": 9540.0
+      },
+      {
+        "CantidadProducto": 45.0,
+        "Producto": {
+          "Descripcion": "Producto 3",
+          "Valor": 3000.0
+        },
+        "TotalProducto": 135000.0
+      },
+      {
+        "CantidadProducto": 44.0,
+        "Producto": {
+          "Descripcion": "Producto 10",
+          "Valor": 1050.0
+        },
+        "TotalProducto": 46200.0
+      },
+      {
+        "CantidadProducto": 8.0,
+        "Producto": {
+          "Descripcion": "Producto 7",
+          "Valor": 1400.0
+        },
+        "TotalProducto": 11200.0
+      },
+      {
+        "CantidadProducto": 41.0,
+        "Producto": {
+          "Descripcion": "Producto 1",
+          "Valor": 1000.0
+        },
+        "TotalProducto": 41000.0
+      }
+    ]
+  },
+  {
+    "NumeroDocumento": 1583.0,
+    "RUTVendedor": 6732913.0,
+    "DvVendedor": "9",
+    "RUTComprador": 8622246.0,
+    "DvComprador": "9",
+    "DireccionComprador": "Direccion 15",
+    "ComunaComprador": 45.0,
+    "RegionComprador": 13.0,
+    "TotalFactura": 0.0,
+    "DetalleFactura": [
+      {
+        "CantidadProducto": 10.0,
+        "Producto": {
+          "Descripcion": "Producto 2",
+          "Valor": 2000.0
+        },
+        "TotalProducto": 20000.0
+      },
+      {
+        "CantidadProducto": 7.0,
+        "Producto": {
+          "Descripcion": "Producto 10",
+          "Valor": 1050.0
+        },
+        "TotalProducto": 7350.0
+      },
+      {
+        "CantidadProducto": 10.0,
+        "Producto": {
+          "Descripcion": "Producto 8",
+          "Valor": 1060.0
+        },
+        "TotalProducto": 10600.0
+      }
+    ]
+  },
+  {
+    "NumeroDocumento": 1584.0,
+    "RUTVendedor": 18338335.0,
+    "DvVendedor": "3",
+    "RUTComprador": 10782109.0,
+    "DvComprador": "0",
+    "DireccionComprador": "Direccion 16",
+    "ComunaComprador": 65.0,
+    "RegionComprador": 13.0,
+    "TotalFactura": 0.0,
+    "DetalleFactura": [
+      {
+        "CantidadProducto": 45.0,
+        "Producto": {
+          "Descripcion": "Producto 3",
+          "Valor": 3000.0
+        },
+        "TotalProducto": 135000.0
+      },
+      {
+        "CantidadProducto": 41.0,
+        "Producto": {
+          "Descripcion": "Producto 1",
+          "Valor": 1000.0
+        },
+        "TotalProducto": 41000.0
+      },
+      {
+        "CantidadProducto": 9.0,
+        "Producto": {
+          "Descripcion": "Producto 10",
+          "Valor": 1050.0
+        },
+        "TotalProducto": 9450.0
+      }
+    ]
+  },
+  {
+    "NumeroDocumento": 1585.0,
+    "RUTVendedor": 21979000.0,
+    "DvVendedor": "7",
+    "RUTComprador": 21595854.0,
+    "DvComprador": "k",
+    "DireccionComprador": "Direccion 17",
+    "ComunaComprador": 78.0,
+    "RegionComprador": 13.0,
+    "TotalFactura": 0.0,
+    "DetalleFactura": [
+      {
+        "CantidadProducto": 45.0,
+        "Producto": {
+          "Descripcion": "Producto 5",
+          "Valor": 4200.0
+        },
+        "TotalProducto": 189000.0
+      },
+      {
+        "CantidadProducto": 6.0,
+        "Producto": {
+          "Descripcion": "Producto 2",
+          "Valor": 2000.0
+        },
+        "TotalProducto": 12000.0
+      },
+      {
+        "CantidadProducto": 44.0,
+        "Producto": {
+          "Descripcion": "Producto 3",
+          "Valor": 3000.0
+        },
+        "TotalProducto": 132000.0
+      }
+    ]
+  },
+  {
+    "NumeroDocumento": 1586.0,
+    "RUTVendedor": 14559290.0,
+    "DvVendedor": "9",
+    "RUTComprador": 7268641.0,
+    "DvComprador": "1",
+    "DireccionComprador": "Direccion 18",
+    "ComunaComprador": 89.0,
+    "RegionComprador": 13.0,
+    "TotalFactura": 0.0,
+    "DetalleFactura": [
+      {
+        "CantidadProducto": 41.0,
+        "Producto": {
+          "Descripcion": "Producto 6",
+          "Valor": 5000.0
+        },
+        "TotalProducto": 205000.0
+      },
+      {
+        "CantidadProducto": 8.0,
+        "Producto": {
+          "Descripcion": "Producto 4",
+          "Valor": 4000.0
+        },
+        "TotalProducto": 32000.0
+      },
+      {
+        "CantidadProducto": 41.0,
+        "Producto": {
+          "Descripcion": "Producto 9",
+          "Valor": 1400.0
+        },
+        "TotalProducto": 57400.0
+      },
+      {
+        "CantidadProducto": 6.0,
+        "Producto": {
+          "Descripcion": "Producto 7",
+          "Valor": 1400.0
+        },
+        "TotalProducto": 8400.0
+      },
+      {
+        "CantidadProducto": 9.0,
+        "Producto": {
+          "Descripcion": "Producto 5",
+          "Valor": 4200.0
+        },
+        "TotalProducto": 37800.0
+      },
+      {
+        "CantidadProducto": 44.0,
+        "Producto": {
+          "Descripcion": "Producto 1",
+          "Valor": 1000.0
+        },
+        "TotalProducto": 44000.0
+      },
+      {
+        "CantidadProducto": 8.0,
+        "Producto": {
+          "Descripcion": "Producto 10",
+          "Valor": 1050.0
+        },
+        "TotalProducto": 8400.0
+      },
+      {
+        "CantidadProducto": 6.0,
+        "Producto": {
+          "Descripcion": "Producto 3",
+          "Valor": 3000.0
+        },
+        "TotalProducto": 18000.0
+      }
+    ]
+  },
+  {
+    "NumeroDocumento": 1587.0,
+    "RUTVendedor": 5659441.0,
+    "DvVendedor": "8",
+    "RUTComprador": 10782109.0,
+    "DvComprador": "0",
+    "DireccionComprador": "Direccion 19",
+    "ComunaComprador": 45.0,
+    "RegionComprador": 13.0,
+    "TotalFactura": 0.0,
+    "DetalleFactura": [
+      {
+        "CantidadProducto": 45.0,
+        "Producto": {
+          "Descripcion": "Producto 5",
+          "Valor": 4200.0
+        },
+        "TotalProducto": 189000.0
+      },
+      {
+        "CantidadProducto": 41.0,
+        "Producto": {
+          "Descripcion": "Producto 10",
+          "Valor": 1050.0
+        },
+        "TotalProducto": 43050.0
+      },
+      {
+        "CantidadProducto": 10.0,
+        "Producto": {
+          "Descripcion": "Producto 2",
+          "Valor": 2000.0
+        },
+        "TotalProducto": 20000.0
+      },
+      {
+        "CantidadProducto": 9.0,
+        "Producto": {
+          "Descripcion": "Producto 4",
+          "Valor": 4000.0
+        },
+        "TotalProducto": 36000.0
+      }
+    ]
+  }
+]

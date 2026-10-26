@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Facturas.Api/Facturas.Api.csproj" />
+    <Project Path="src/Facturas.Application/Facturas.Application.csproj" />
+    <Project Path="src/Facturas.Domain/Facturas.Domain.csproj" />
+    <Project Path="src/Facturas.Infrastructure/Facturas.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Facturas.Tests/Facturas.Tests.csproj" />
+  </Folder>
+</Solution>
