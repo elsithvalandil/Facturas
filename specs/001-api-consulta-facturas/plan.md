@@ -152,6 +152,35 @@ Centraliza el parseo de los formatos aceptados y la validación del DV, de modo 
 - Toda respuesta de error, esperada o no, tiene el mismo formato.
 - Verificado por `ArranqueTests.Archivo_de_datos_inexistente_impide_el_arranque` y por las pruebas de códigos HTTP de `FacturasApiTests`.
 
+### D-10 — Variante Vertical Slice (rama `vertical-slice`)
+**Fecha:** 2026-10-27 · **Estado:** Propuesta, para comparar con D-01
+
+**Contexto.** D-01 menciona Vertical Slice como alternativa válida si la API se mantiene de solo lectura. Se implementó en una rama aparte para comparar con código real y no solo en teoría.
+
+**Decisión.** Un único proyecto `Facturas.Api`, con un archivo por requisito en `Features/` (endpoint + lógica + respuesta) y lo compartido en `Common/`. La sección "Estructura" de este plan describe la versión de `main`; la de esta rama está en el README.
+
+| Elemento en `main` | En `vertical-slice` |
+|---|---|
+| Proyectos `Domain`, `Application`, `Infrastructure` | Carpetas `Common/Domain` y `Common/Data` dentro de `Facturas.Api` |
+| `IFacturaService` / `FacturaService` | La lógica de cada consulta vive en su slice |
+| `IFacturaRepository` / `JsonFacturaRepository` | `FacturaStore` (sin interfaz, sin `async`) |
+| `CompradorTotalDto`, `ComunaFacturasDto` | Un `record` de respuesta dentro de cada slice |
+| `FacturaDto` + `FacturaMappings` | `Common/Contracts/FacturaDto` con `FacturaDto.From` |
+| `FacturaEndpoints`, `CompradorEndpoints` | Un `Map` por slice, registrado en `Program.cs` |
+| `FacturaServiceTests` | `FeaturesTests`: cada slice se prueba a través de su endpoint |
+
+**Decisiones internas de la variante:**
+- `CompradorMayorCompra` reutiliza `CompradoresConTotal.Calcular` en vez de repetir la agrupación. Es el único acoplamiento entre slices, y queda dentro de la misma carpeta.
+- `FacturaStore` es síncrono y no tiene interfaz: con los datos en memoria, el `async` solo agregaba ruido. Si se conectara una base de datos, habría que reintroducir una interfaz y tocar los 6 slices.
+- Se conservan sin cambios el dominio, la validación al arranque (D-09), la ApiKey y los ProblemDetails.
+
+**Verificación.** Build sin advertencias y 31/31 pruebas. Las respuestas HTTP de los 11 casos de prueba (cuerpo y código) y las rutas de OpenAPI son **idénticas** a las de `main`.
+
+**Consecuencias.**
+- Se pasa de 5 proyectos a 2 (API y pruebas) y desaparecen 2 interfaces y 2 archivos `DependencyInjection`.
+- La separación entre dominio y endpoints depende de las carpetas, no del compilador.
+- Cambiar la fuente de datos cuesta más que en `main`.
+
 ## Cumplimiento de la constitución
 
 | Principio | Cómo se cumple |

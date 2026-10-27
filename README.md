@@ -7,19 +7,26 @@ El total de cada factura (y de cada línea) se calcula en ejecución a partir de
 
 El enunciado, la spec, el plan y las tareas están en [`specs/001-api-consulta-facturas/`](specs/001-api-consulta-facturas/). Los principios del proyecto están en [`.specify/memory/constitution.md`](.specify/memory/constitution.md).
 
-## Arquitectura (Clean Architecture)
+## Arquitectura (Vertical Slice)
+
+> Esta es la rama `vertical-slice`, una variante de la solución de `main` (Clean Architecture) con **el mismo contrato HTTP**. Ver [D-10](specs/001-api-consulta-facturas/plan.md#d-10--variante-vertical-slice-rama-vertical-slice).
 
 ```
-src/
-  Facturas.Domain          Entidades (Factura, DetalleFactura, Producto) y value object Rut (validación módulo 11). Sin dependencias.
-  Facturas.Application     Casos de uso (IFacturaService/FacturaService), DTOs y el puerto IFacturaRepository.
-  Facturas.Infrastructure  JsonFacturaRepository: lee el JSON una vez, lo mapea al dominio y lo mantiene en memoria.
-  Facturas.Api             Minimal API: endpoints, ApiKey, ProblemDetails, OpenAPI + Swagger UI.
+src/Facturas.Api/
+  Program.cs               Registra los 6 slices, la ApiKey, ProblemDetails y OpenAPI + Swagger UI.
+  Common/
+    Domain/                Factura, DetalleFactura, Producto y Rut (validación módulo 11).
+    Data/                  FacturaStore: lee el JSON una vez, lo mapea al dominio y lo mantiene en memoria.
+    Contracts/             FacturaDto, compartido por 4 slices.
+    Security/, OpenApi/    ApiKey y su documentación en OpenAPI.
+  Features/
+    Facturas/              ListarFacturas (RF-01), FacturasAgrupadasPorComuna (RF-05), FacturasPorComuna (RF-06).
+    Compradores/           FacturasPorComprador (RF-02), CompradorMayorCompra (RF-03), CompradoresConTotal (RF-04).
 tests/
-  Facturas.Tests           Pruebas de dominio, de aplicación (sobre el JSON real) e integración HTTP.
+  Facturas.Tests           Pruebas de dominio, de cada slice a través de su endpoint e integración HTTP.
 ```
 
-Las dependencias apuntan hacia adentro: `Api → Application/Infrastructure → Domain`; `Infrastructure` implementa el puerto definido en `Application`.
+Cada slice es un archivo con su endpoint, su lógica y su respuesta: un requisito del enunciado se revisa leyendo un solo archivo. Solo lo que usan varios slices vive en `Common/`.
 
 ## Seguridad
 

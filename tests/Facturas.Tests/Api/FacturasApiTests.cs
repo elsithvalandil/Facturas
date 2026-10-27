@@ -1,6 +1,6 @@
 using System.Net;
 using System.Net.Http.Json;
-using Facturas.Application.Dtos;
+using Facturas.Api.Common.Contracts;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 

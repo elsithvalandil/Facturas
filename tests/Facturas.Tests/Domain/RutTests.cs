@@ -1,4 +1,4 @@
-using Facturas.Domain.ValueObjects;
+using Facturas.Api.Common.Domain;
 
 namespace Facturas.Tests.Domain;
 
