@@ -62,6 +62,14 @@ No hay `try/catch` en el código, por diseño:
 
 Detalle y justificación: [D-09](specs/001-api-consulta-facturas/plan.md#d-09--manejo-de-errores-sin-trycatch-y-validación-al-arranque).
 
+### Validaciones de datos
+
+El RUT se valida por módulo 11 tanto en el request (`Rut.TryParse`) como al leer compradores y vendedores del JSON (`Rut.Create`). El número debe estar entre 1 y 999.999.999. Un request inválido recibe 400; un RUT inválido en la fuente impide el arranque. El request permite omitir el DV; el archivo debe incluirlo.
+
+La carga exige todos los campos de lectura, documento/comuna/región enteros positivos, dirección no vacía y al menos una línea por factura. Cada línea requiere cantidad entera positiva, producto con descripción no vacía y precio no negativo. Se permite precio cero y una fuente `[]`; no se permiten facturas, líneas o productos nulos. Los totales originales son opcionales y se ignoran.
+
+Reglas detalladas y límites: [modelo de datos](specs/001-api-consulta-facturas/data-model.md#validaciones-al-cargar-el-json). Decisión técnica: [D-10](specs/001-api-consulta-facturas/plan.md#d-10--validación-de-rut-y-datos-de-origen).
+
 ## Ejecutar
 
 ```bash
@@ -75,6 +83,10 @@ dotnet run --project src/Facturas.Api --launch-profile http
 ApiKey de desarrollo: `dev-api-key-7f3c2a9e4b1d`.
 
 ## Pruebas
+
+Las pruebas cubren las seis rutas con ApiKey ausente e incorrecta, fuente vacía, desempate por menor número de RUT, totales originales incorrectos, validación de datos al arrancar y respuestas ProblemDetails, incluido un error 500 sin detalles internos.
+
+Última verificación de código: **82 pruebas aprobadas**, el 2026-10-27. Trazabilidad en [tasks.md](specs/001-api-consulta-facturas/tasks.md).
 
 ```bash
 dotnet test

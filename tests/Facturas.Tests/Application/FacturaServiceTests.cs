@@ -43,6 +43,10 @@ public class FacturaServiceTests
 
         var top = await _service.GetCompradorConMayorCompraAsync();
         Assert.Equal(compradores[0], top);
+        Assert.NotNull(top);
+        Assert.Equal(21595854, top.RUTComprador);
+        Assert.Equal(1_550_300m, top.MontoTotalCompras);
+        Assert.Equal(5, top.CantidadFacturas);
     }
 
     [Fact]

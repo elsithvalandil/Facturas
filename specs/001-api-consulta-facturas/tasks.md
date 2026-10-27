@@ -49,20 +49,29 @@
 - [x] T22 Cargar el JSON al arrancar para que la app no inicie con datos inexistentes o inválidos → `ArranqueTests.Archivo_de_datos_inexistente_impide_el_arranque` (RNF-04, RNF-07)
 - [x] T23 Documentar la estrategia de errores en [D-09](plan.md#d-09--manejo-de-errores-sin-trycatch-y-validación-al-arranque), en el contrato y en el README. Build sin advertencias, 31/31 pruebas
 
+## Fase 9 — Validaciones y cobertura (2026-10-27)
+
+- [x] T24 Unificar rango y DV de `Rut.Create` y `TryParse` → `RutTests.Create_y_TryParse_producen_el_mismo_rut`, `Create_rechaza_dv_invalido`, `Create_y_TryParse_rechazan_numero_fuera_de_rango`; rechazo de RUT de origen → `ArranqueTests.Rut_invalido_en_el_json_impide_el_arranque` (RF-02, RNF-07)
+- [x] T25 Exigir campos de lectura y validar estructura y valores al cargar → `DatosYErroresTests.Datos_invalidos_impiden_arranque` (RNF-01, RNF-07)
+- [x] T26 Probar ApiKey ausente e incorrecta en las seis rutas → teorías de `FacturasApiTests` (RNF-02)
+- [x] T27 Cubrir fuente vacía, empates, totales originales incorrectos y ganador esperado independiente → `DatosYErroresTests.Fuente_vacia_respeta_contrato`, `Totales_del_archivo_se_ignoran_y_empate_se_resuelve_por_rut`, `FacturaServiceTests.GetCompradores_suma_totales_y_ordena_descendente` (RF-01..06, RNF-01, RNF-04)
+- [x] T28 Verificar ProblemDetails y 500 sin detalles internos → `DatosYErroresTests.Errores_tienen_formato_ProblemDetails`, `Error_inesperado_responde_500_sin_exponer_detalles_internos` (RNF-04)
+- [x] T29 Actualizar README, modelo, spec, contrato y D-10; `dotnet test` compiló la solución y aprobó 82/82 pruebas (RNF-07)
+
 ## Matriz de trazabilidad
 
 | Requisito | Tareas |
 |---|---|
-| RF-01 | T04, T06, T10 |
-| RF-02 | T03, T07, T10 |
-| RF-03 | T08, T10 |
-| RF-04 | T08, T10 |
-| RF-05 | T09, T10 |
-| RF-06 | T09, T10 |
-| RNF-01 | T02, T05 |
-| RNF-02 | T11, T16 |
+| RF-01 | T04, T06, T10, T27 |
+| RF-02 | T03, T07, T10, T24, T27 |
+| RF-03 | T08, T10, T27 |
+| RF-04 | T08, T10, T27 |
+| RF-05 | T09, T10, T27 |
+| RF-06 | T09, T10, T27 |
+| RNF-01 | T02, T05, T25, T27 |
+| RNF-02 | T11, T16, T26 |
 | ~~RNF-03~~ | Removido (T16) |
-| RNF-04 | T10, T13, T22, T23 |
+| RNF-04 | T10, T13, T22, T23, T27, T28 |
 | RNF-05 | T01 |
 | RNF-06 | T01 |
-| RNF-07 | T15, T22 |
+| RNF-07 | T15, T22, T24, T25, T29 |

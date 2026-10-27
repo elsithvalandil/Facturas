@@ -152,6 +152,22 @@ Centraliza el parseo de los formatos aceptados y la validación del DV, de modo 
 - Toda respuesta de error, esperada o no, tiene el mismo formato.
 - Verificado por `ArranqueTests.Archivo_de_datos_inexistente_impide_el_arranque` y por las pruebas de códigos HTTP de `FacturasApiTests`.
 
+### D-10 — Validación de RUT y datos de origen
+
+**Fecha:** 2026-10-27 · **Estado:** Aceptada
+
+**Contexto.** `Rut.Create` aceptaba un DV incorrecto aunque `TryParse` lo rechazaba. Además, la deserialización podía asignar valores predeterminados a campos ausentes, y un detalle nulo se convertía en una colección vacía. Arrancar correctamente no garantizaba el cumplimiento de las reglas de datos esperadas.
+
+**Decisión.**
+
+- `Create` y `TryParse` comprueban el mismo rango numérico y DV por módulo 11. Comparten `EsNumeroValido` y `CalcularDv`. `Create` lanza `ArgumentOutOfRangeException` para el rango y `ArgumentException` para el DV; `TryParse` devuelve `false` para que el endpoint responda 400.
+- El repositorio exige los parámetros de los modelos de lectura con `RespectRequiredConstructorParameters`. Antes de mapear valida presencia, textos requeridos, valores positivos, detalles no vacíos y precios no negativos. Los enteros se convierten sin admitir fracciones y con control de rango. El catálogo completo de reglas está en [data-model.md](data-model.md#validaciones-al-cargar-el-json).
+- Las comprobaciones de estructura y valores del archivo pertenecen a Infrastructure; la regla del RUT pertenece a Domain. No se cambia la estructura del JSON ni se corrigen datos silenciosamente.
+- Se admiten precio cero y una fuente `[]`. Los totales del archivo siguen siendo opcionales e ignorados.
+- Se mantiene la carga anticipada de D-09: cualquier error de lectura o validación impide el arranque, sin devolver una respuesta HTTP de consulta.
+
+**Verificación.** Pruebas de equivalencia y rechazo en `RutTests`, RUT de compradores y vendedores inválidos en `ArranqueTests`, datos inválidos y fuente vacía en `DatosYErroresTests`. Se amplió también la cobertura de ApiKey para las seis rutas, totales originales incorrectos, desempate por menor RUT y ProblemDetails 400/401/404/500. La suite completa pasó con 82 pruebas el 2026-10-27.
+
 ## Cumplimiento de la constitución
 
 | Principio | Cómo se cumple |

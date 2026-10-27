@@ -6,7 +6,7 @@
 | Origen | [enunciado.md](enunciado.md) |
 | Plan | [plan.md](plan.md) |
 | Tareas | [tasks.md](tasks.md) |
-| Última revisión | 2026-10-26: se remueve JWT (RNF-03) |
+| Última revisión | 2026-10-27: validación de RUT en origen y de estructura y valores del JSON |
 
 Esta spec describe **qué** debe hacer el sistema y **por qué**, sin decisiones de implementación (ver [plan.md](plan.md)).
 
@@ -34,6 +34,7 @@ Como consumidor, quiero saber qué comprador acumula el mayor monto total en com
 
 - Devuelve un único comprador con su monto acumulado y cantidad de facturas.
 - Sin facturas en la fuente → 404.
+- En empate de monto, gana el comprador con menor número de RUT.
 
 ### HU-4 — Compradores con monto total
 Como consumidor, quiero la lista de compradores con el monto total de sus compras.
@@ -74,6 +75,14 @@ Como consumidor, quiero obtener las facturas de una comuna específica.
 | RNF-06 | .NET 10 con Minimal API (cumple ".NET 8 o superior") | Enunciado + ADR |
 | RNF-07 | Compila y se ejecuta correctamente | Enunciado |
 
+## Validación de la fuente al arrancar
+
+- La aplicación rechaza datos que incumplan las [reglas del modelo de datos](data-model.md#validaciones-al-cargar-el-json): campos obligatorios, RUT con DV válido, identificadores positivos, textos requeridos y detalles con cantidades positivas y precios no negativos.
+- Los campos enteros no admiten fracciones. El precio cero está permitido.
+- Una fuente `[]` es válida: los listados generales devuelven 200 con `[]`, y las búsquedas por clave y el comprador de mayor compra devuelven 404.
+- Un error de datos impide iniciar la aplicación; no se convierte en un 400 o 500 de una consulta. Los errores de entrada del request conservan sus códigos HTTP.
+- El JSON original no se modifica y sus totales continúan ignorándose.
+
 ## Fuera de alcance
 
 - Altas, modificaciones o eliminación de facturas.
@@ -85,5 +94,5 @@ Como consumidor, quiero obtener las facturas de una comuna específica.
 | Pregunta | Decisión |
 |---|---|
 | ¿ApiKey o JWT? El enunciado pide ApiKey y la indicación inicial del ADR pedía JWT | Inicialmente ambos ([D-03](plan.md#d-03--apikey--jwt-reemplazada-por-d-07)). Desde el 2026-10-26, solo ApiKey, como pide el enunciado ([D-07](plan.md#d-07--remoción-de-jwt)) |
-| ¿Qué pasa si hay empate en mayor compra? | Se devuelve uno solo (el primero según el orden descendente) |
+| ¿Qué pasa si hay empate en mayor compra? | Se devuelve el comprador con menor número de RUT entre los empatados |
 | ¿Una consulta sin resultados es 200 con lista vacía o 404? | 404 en búsquedas por clave (RUT, comuna); 200 en listados generales |

@@ -25,6 +25,16 @@ Todas las respuestas de error usan `application/problem+json`.
 
 ## Errores
 
+### Entradas y fuente de datos
+
+El RUT del request admite formatos con guion, puntos, DV `K` sin guion o solo número. El cuerpo admite de uno a nueve dígitos y debe representar un número positivo. Cuando se proporciona DV, debe coincidir con módulo 11; si se omite, se calcula. Un RUT inválido devuelve 400.
+
+Los RUT del JSON se validan también por rango y módulo 11, pero el archivo debe incluir número y DV. Un error de validación del archivo impide el arranque y no genera una respuesta HTTP de consulta. Reglas completas: [modelo de datos](../data-model.md#validaciones-al-cargar-el-json).
+
+Con una fuente `[]`, `/facturas`, `/compradores` y `/facturas/comunas` devuelven 200 con `[]`; las búsquedas por RUT o comuna y `/compradores/mayor-compra` devuelven 404. En un empate de compras, el ganador es el comprador con menor número de RUT.
+
+### Formato de respuesta
+
 Error esperado (por ejemplo, un RUT inválido): `title` y `detail` describen el problema.
 
 ```json

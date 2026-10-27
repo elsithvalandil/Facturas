@@ -16,12 +16,16 @@ public readonly record struct Rut
 
     public static Rut Create(long numero, string dv)
     {
-        if (numero <= 0)
-            throw new ArgumentOutOfRangeException(nameof(numero), "El RUT debe ser mayor a cero.");
+        if (!EsNumeroValido(numero))
+            throw new ArgumentOutOfRangeException(nameof(numero), "El RUT debe ser mayor a cero y tener como máximo nueve dígitos.");
         if (string.IsNullOrWhiteSpace(dv) || dv.Trim().Length != 1)
             throw new ArgumentException("El dígito verificador debe ser un único carácter.", nameof(dv));
 
-        return new Rut(numero, char.ToUpperInvariant(dv.Trim()[0]));
+        var dvNormalizado = char.ToUpperInvariant(dv.Trim()[0]);
+        if (dvNormalizado != CalcularDv(numero))
+            throw new ArgumentException("El dígito verificador no corresponde al número de RUT.", nameof(dv));
+
+        return new Rut(numero, dvNormalizado);
     }
 
     /// <summary>
@@ -57,7 +61,7 @@ public readonly record struct Rut
             cuerpo = limpio;
         }
 
-        if (cuerpo.Length is 0 or > 9 || !cuerpo.All(char.IsAsciiDigit) || !long.TryParse(cuerpo, out var numero) || numero <= 0)
+        if (cuerpo.Length is 0 or > 9 || !cuerpo.All(char.IsAsciiDigit) || !long.TryParse(cuerpo, out var numero) || !EsNumeroValido(numero))
             return false;
 
         var dvCalculado = CalcularDv(numero);
@@ -67,6 +71,8 @@ public readonly record struct Rut
         rut = new Rut(numero, dvCalculado);
         return true;
     }
+
+    private static bool EsNumeroValido(long numero) => numero is > 0 and <= 999_999_999;
 
     public static char CalcularDv(long numero)
     {

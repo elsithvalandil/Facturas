@@ -10,23 +10,35 @@ public class FacturasApiTests(FacturasApiFactory factory) : IClassFixture<Factur
 {
     private const string ApiKey = "dev-api-key-7f3c2a9e4b1d";
 
-    [Fact]
-    public async Task Sin_ApiKey_responde_401()
+    [Theory]
+    [InlineData("/api/v1/facturas")]
+    [InlineData("/api/v1/compradores")]
+    [InlineData("/api/v1/compradores/mayor-compra")]
+    [InlineData("/api/v1/compradores/21595854-k/facturas")]
+    [InlineData("/api/v1/facturas/comunas")]
+    [InlineData("/api/v1/facturas/comunas/45")]
+    public async Task Sin_ApiKey_responde_401(string url)
     {
         var client = factory.CreateClient();
 
-        var response = await client.GetAsync("/api/v1/facturas");
+        var response = await client.GetAsync(url);
 
         Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
     }
 
-    [Fact]
-    public async Task ApiKey_invalida_responde_401()
+    [Theory]
+    [InlineData("/api/v1/facturas")]
+    [InlineData("/api/v1/compradores")]
+    [InlineData("/api/v1/compradores/mayor-compra")]
+    [InlineData("/api/v1/compradores/21595854-k/facturas")]
+    [InlineData("/api/v1/facturas/comunas")]
+    [InlineData("/api/v1/facturas/comunas/45")]
+    public async Task ApiKey_invalida_responde_401(string url)
     {
         var client = factory.CreateClient();
         client.DefaultRequestHeaders.Add("X-Api-Key", "otra-key");
 
-        var response = await client.GetAsync("/api/v1/facturas");
+        var response = await client.GetAsync(url);
 
         Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
     }
@@ -73,6 +85,33 @@ public class FacturasApiTests(FacturasApiFactory factory) : IClassFixture<Factur
 
 public class ArranqueTests
 {
+    [Theory]
+    [InlineData("DvComprador")]
+    [InlineData("DvVendedor")]
+    public void Rut_invalido_en_el_json_impide_el_arranque(string campoDv)
+    {
+        var datos = System.Text.Json.Nodes.JsonNode.Parse(
+            File.ReadAllText(Path.Combine(AppContext.BaseDirectory, "Data/Ejemplo.json")))!;
+        datos[0]![campoDv] = "X";
+        var archivo = Path.GetTempFileName();
+        try
+        {
+            File.WriteAllText(archivo, datos.ToJsonString());
+            using var factory = new WebApplicationFactory<Program>().WithWebHostBuilder(builder =>
+            {
+                builder.UseEnvironment("Development");
+                builder.UseSetting("FacturaData:FilePath", archivo);
+            });
+
+            var error = Assert.Throws<ArgumentException>(() => factory.CreateClient());
+            Assert.Equal("dv", error.ParamName);
+        }
+        finally
+        {
+            File.Delete(archivo);
+        }
+    }
+
     [Fact]
     public void Archivo_de_datos_inexistente_impide_el_arranque()
     {
