@@ -22,3 +22,21 @@ Todas las rutas exigen el header `X-Api-Key: <apikey>`.
 Comunes a todas las rutas: **401** si falta o es inválida la ApiKey · **500** si hay un error no controlado.
 
 Todas las respuestas de error usan `application/problem+json`.
+
+## Errores
+
+Error esperado (por ejemplo, un RUT inválido): `title` y `detail` describen el problema.
+
+```json
+{ "type": "https://tools.ietf.org/html/rfc9110#section-15.5.1", "title": "RUT inválido", "status": 400,
+  "detail": "Formato esperado: 12345678-9, 12.345.678-K o solo el número. El DV debe ser válido.", "traceId": "00-…" }
+```
+
+Error inesperado (500): no expone detalles internos. El `traceId` permite ubicar la excepción en el log del servidor.
+
+```json
+{ "type": "https://tools.ietf.org/html/rfc9110#section-15.6.1", "title": "An error occurred while processing your request.",
+  "status": 500, "traceId": "00-…" }
+```
+
+Estrategia completa: [D-09](../plan.md#d-09--manejo-de-errores-sin-trycatch-y-validación-al-arranque).

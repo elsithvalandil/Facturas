@@ -33,3 +33,5 @@ Se debe utilizar exactamente el siguiente JSON sin modificar su estructura.
 ## Indicación adicional del ADR
 
 Como ADR, quiero que la solución que se cree esté en NET 10, implementando Minimal Api.
+
+> **Cambio del 2026-10-26:** la versión inicial de esta indicación pedía además "utilizar JWT para la autorización de cada Endpoint". Esa parte se retiró; ver [D-07](plan.md#d-07--remoción-de-jwt).

@@ -25,7 +25,7 @@ Las dependencias apuntan hacia adentro: `Api → Application/Infrastructure → 
 
 Todos los endpoints de `/api/v1` exigen una **ApiKey** en el header `X-Api-Key`. Se valida con un endpoint filter aplicado al grupo raíz, tal como pide el enunciado.
 
-> Una versión anterior además exigía JWT, por indicación del ADR. Se removió para ajustarse al enunciado: ver la decisión [D-07](specs/001-api-consulta-facturas/plan.md#d-07--remoción-de-jwt).
+> Una versión anterior además exigía JWT, porque lo pedía la indicación inicial del ADR. Esa parte se retiró de la indicación y el JWT se removió para ajustarse al enunciado: ver la decisión [D-07](specs/001-api-consulta-facturas/plan.md#d-07--remoción-de-jwt).
 
 El valor de desarrollo está en `appsettings.Development.json`. En otros entornos debe definirse por variable de entorno o gestor de secretos (`ApiKey__Key`); la aplicación no arranca si falta.
 
@@ -51,6 +51,16 @@ El valor de desarrollo está en `appsettings.Development.json`. En otros entorno
 | 500 | Error no controlado (respuesta `ProblemDetails`) |
 
 Todos los errores se devuelven como `application/problem+json`.
+
+### Manejo de errores
+
+No hay `try/catch` en el código, por diseño:
+
+- **Entradas inválidas** (RUT, comuna, ApiKey): se validan con condiciones y devuelven 400, 401 o 404. No se usan excepciones como control de flujo.
+- **Configuración o datos inválidos**: la aplicación **no arranca** si falta la ApiKey o si `Ejemplo.json` no existe o es inválido.
+- **Errores inesperados**: los atrapa un único manejador global (`UseExceptionHandler`). El cliente recibe un 500 sin detalles internos y el log registra la excepción con el mismo `traceId`.
+
+Detalle y justificación: [D-09](specs/001-api-consulta-facturas/plan.md#d-09--manejo-de-errores-sin-trycatch-y-validación-al-arranque).
 
 ## Ejecutar
 

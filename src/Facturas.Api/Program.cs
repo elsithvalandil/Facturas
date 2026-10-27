@@ -2,6 +2,7 @@ using Facturas.Api.Endpoints;
 using Facturas.Api.OpenApi;
 using Facturas.Api.Security;
 using Facturas.Application;
+using Facturas.Application.Abstractions;
 using Facturas.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -35,6 +36,9 @@ var api = app.MapGroup("/api/v1")
 
 api.MapFacturaEndpoints();
 api.MapCompradorEndpoints();
+
+// Carga el JSON al arrancar: si falta o es inválido, la aplicación no inicia (en vez de responder 500 en cada petición).
+app.Services.GetRequiredService<IFacturaRepository>();
 
 app.Run();
 

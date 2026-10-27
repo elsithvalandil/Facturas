@@ -68,7 +68,7 @@ Como consumidor, quiero obtener las facturas de una comuna específica.
 |---|---|---|
 | RNF-01 | El JSON entregado es la única fuente de datos y no se modifica su estructura | Enunciado |
 | RNF-02 | Todos los métodos protegidos con ApiKey | Enunciado |
-| ~~RNF-03~~ | ~~Autorización por JWT en cada endpoint de negocio~~ — **Removido** el 2026-10-26, ver [D-07](plan.md#d-07--remoción-de-jwt) | ADR |
+| ~~RNF-03~~ | ~~Autorización por JWT en cada endpoint de negocio~~ — **Removido** el 2026-10-26, ver [D-07](plan.md#d-07--remoción-de-jwt) | ADR (indicación retirada) |
 | RNF-04 | Códigos HTTP adecuados; errores en formato ProblemDetails | Enunciado |
 | RNF-05 | Patrón de arquitectura (Clean Architecture) | Enunciado |
 | RNF-06 | .NET 10 con Minimal API (cumple ".NET 8 o superior") | Enunciado + ADR |
@@ -84,6 +84,6 @@ Como consumidor, quiero obtener las facturas de una comuna específica.
 
 | Pregunta | Decisión |
 |---|---|
-| ¿ApiKey o JWT? El enunciado pide ApiKey y el ADR pide JWT | Inicialmente ambos ([D-03](plan.md#d-03--apikey--jwt-reemplazada-por-d-07)). Desde el 2026-10-26, solo ApiKey, como pide el enunciado ([D-07](plan.md#d-07--remoción-de-jwt)) |
+| ¿ApiKey o JWT? El enunciado pide ApiKey y la indicación inicial del ADR pedía JWT | Inicialmente ambos ([D-03](plan.md#d-03--apikey--jwt-reemplazada-por-d-07)). Desde el 2026-10-26, solo ApiKey, como pide el enunciado ([D-07](plan.md#d-07--remoción-de-jwt)) |
 | ¿Qué pasa si hay empate en mayor compra? | Se devuelve uno solo (el primero según el orden descendente) |
 | ¿Una consulta sin resultados es 200 con lista vacía o 404? | 404 en búsquedas por clave (RUT, comuna); 200 en listados generales |

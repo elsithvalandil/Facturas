@@ -41,6 +41,13 @@
 
 - [x] T18 Simplificaciones de [D-08](plan.md#d-08--record-para-datos-inmutables-class-para-la-entidad): modelos de lectura sin totales, carga del JSON en el constructor, agrupación por `Rut`, `CompradorTotalDto` sin campo redundante. Build sin advertencias, 30/30 pruebas
 - [x] T19 Corregir en [data-model.md](data-model.md) el alcance de la validación del DV
+- [x] T20 Ampliar [D-01](plan.md#d-01--clean-architecture-en-4-proyectos-en-versión-liviana) con el contexto, las alternativas evaluadas, lo que se dejó fuera y las consecuencias (RNF-05)
+- [x] T21 Alinear las referencias al ADR con el enunciado, del que se retiró el pedido de JWT
+
+## Fase 8 — Manejo de errores (2026-10-27)
+
+- [x] T22 Cargar el JSON al arrancar para que la app no inicie con datos inexistentes o inválidos → `ArranqueTests.Archivo_de_datos_inexistente_impide_el_arranque` (RNF-04, RNF-07)
+- [x] T23 Documentar la estrategia de errores en [D-09](plan.md#d-09--manejo-de-errores-sin-trycatch-y-validación-al-arranque), en el contrato y en el README. Build sin advertencias, 31/31 pruebas
 
 ## Matriz de trazabilidad
 
@@ -55,7 +62,7 @@
 | RNF-01 | T02, T05 |
 | RNF-02 | T11, T16 |
 | ~~RNF-03~~ | Removido (T16) |
-| RNF-04 | T10, T13 |
+| RNF-04 | T10, T13, T22, T23 |
 | RNF-05 | T01 |
 | RNF-06 | T01 |
-| RNF-07 | T15 |
+| RNF-07 | T15, T22 |

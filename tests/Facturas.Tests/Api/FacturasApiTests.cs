@@ -71,6 +71,21 @@ public class FacturasApiTests(FacturasApiFactory factory) : IClassFixture<Factur
     }
 }
 
+public class ArranqueTests
+{
+    [Fact]
+    public void Archivo_de_datos_inexistente_impide_el_arranque()
+    {
+        using var factory = new WebApplicationFactory<Program>().WithWebHostBuilder(builder =>
+        {
+            builder.UseEnvironment("Development");
+            builder.UseSetting("FacturaData:FilePath", "Data/no-existe.json");
+        });
+
+        Assert.Throws<FileNotFoundException>(() => factory.CreateClient());
+    }
+}
+
 public sealed class FacturasApiFactory : WebApplicationFactory<Program>
 {
     protected override void ConfigureWebHost(IWebHostBuilder builder)
